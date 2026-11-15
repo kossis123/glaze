@@ -1,0 +1,36 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    # slider:
+    #   type: position_controllers/JointGroupPositionController
+    wheel:
+      type: velocity_controllers/JointGroupVelocityController
+wheel:
+  ros__parameters:
+    joints:
+      - left_wheel_joint
+      - right_wheel_joint
+      # - wheel2_joint
+      # - wheel4_joint
+      # - roller1
+      # - roller2
+    command_interfaces:
+      - velocity 
+    state_interfaces:
+      - position
+      - velocity
+
+# slider:
+#   ros__parameters:
+#     joints:
+#       - slider_b1_joint
+#       # - slider_joint
+#     command_interfaces:
+#       - position
+#     state_interfaces:
+#       - position
+#       - velocity
+
+

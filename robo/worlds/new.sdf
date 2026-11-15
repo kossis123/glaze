@@ -1,0 +1,313 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="robocon_world">
+    <physics name="1ms" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- GROUND -->
+    <model name="ground">
+      <static>true</static>
+      <link name="ground_link">
+        <pose>0 0 -0.05 0 0 0</pose>
+        <visual name="ground_visual">
+          <geometry>
+            <box>
+              <size>20 20 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.7 0.2 1</ambient>
+            <diffuse>0.2 0.7 0.2 1</diffuse>
+          </material>
+        </visual>
+        <collision name="ground_collision">
+          <geometry>
+            <box>
+              <size>20 20 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 1 -->
+    <model name="level_1">
+      <static>true</static>
+      <link name="level_1_link">
+        <pose>0 0 0.5 0 0 0</pose>
+        <visual name="level_1_visual">
+          <geometry>
+            <box>
+              <size>6 6 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.4 0.9 1</ambient>
+            <diffuse>0.1 0.4 0.9 1</diffuse>
+          </material>
+        </visual>
+        <collision name="level_1_collision">
+          <geometry>
+            <box>
+              <size>6 6 1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 2 -->
+    <model name="level_2">
+      <static>true</static>
+      <link name="level_2_link">
+        <pose>0 0 1.5 0 0 0</pose>
+        <visual name="level_2_visual">
+          <geometry>
+            <box>
+              <size>3 3 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.2 0.8 1</ambient>
+            <diffuse>0.6 0.2 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="level_2_collision">
+          <geometry>
+            <box>
+              <size>3 3 1</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 1 NORTH WALL -->
+    <model name="level1_north_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>0 2.925 1.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>6 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.8 0.1 1</ambient>
+            <diffuse>0.9 0.8 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>6 0.15 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 1 SOUTH WALL -->
+    <model name="level1_south_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>0 -2.925 1.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>6 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.8 0.1 1</ambient>
+            <diffuse>0.9 0.8 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>6 0.15 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 1 EAST WALL -->
+    <model name="level1_east_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>2.925 0 1.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>0.15 6 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.8 0.1 1</ambient>
+            <diffuse>0.9 0.8 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>0.15 6 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 1 WEST WALL -->
+    <model name="level1_west_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>-2.925 0 1.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>0.15 6 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.8 0.1 1</ambient>
+            <diffuse>0.9 0.8 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>0.15 6 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 2 NORTH WALL -->
+    <model name="level2_north_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>0 1.425 2.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>3 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.8 0.8 1</ambient>
+            <diffuse>0.1 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>3 0.15 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 2 SOUTH WALL -->
+    <model name="level2_south_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>0 -1.425 2.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>3 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.8 0.8 1</ambient>
+            <diffuse>0.1 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>3 0.15 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 2 EAST WALL -->
+    <model name="level2_east_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>1.425 0 2.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>0.15 3 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.8 0.8 1</ambient>
+            <diffuse>0.1 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>0.15 3 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <!-- LEVEL 2 WEST WALL -->
+    <model name="level2_west_wall">
+      <static>true</static>
+      <link name="wall_link">
+        <pose>-1.425 0 2.25 0 0 0</pose>
+        <visual name="wall_visual">
+          <geometry>
+            <box>
+              <size>0.15 3 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.8 0.8 1</ambient>
+            <diffuse>0.1 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+        <collision name="wall_collision">
+          <geometry>
+            <box>
+              <size>0.15 3 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+  </world>
+</sdf>

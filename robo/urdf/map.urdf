@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+
+<robot name="hero">
+
+  <!-- ================================================= -->
+  <!-- ROOT / GROUND                                     -->
+  <!-- ================================================= -->
+
+  <link name="ground">
+
+    <visual>
+      <geometry>
+        <box size="20.0 20.0 0.10"/>
+      </geometry>
+
+      <material name="green">
+        <color rgba="0.2 0.7 0.2 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="20.0 20.0 0.10"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+
+  <!-- ================================================= -->
+  <!-- LEVEL 1                                           -->
+  <!-- ================================================= -->
+
+  <link name="level_1">
+
+    <visual>
+      <geometry>
+        <box size="6.0 6.0 1.0"/>
+      </geometry>
+
+      <material name="blue">
+        <color rgba="0.1 0.4 0.9 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="6.0 6.0 1.0"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level_1_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level_1"/>
+    <origin xyz="0 0 0.5"/>
+  </joint>
+
+
+  <!-- ================================================= -->
+  <!-- LEVEL 2                                           -->
+  <!-- ================================================= -->
+
+  <link name="level_2">
+
+    <visual>
+      <geometry>
+        <box size="3.0 3.0 1.0"/>
+      </geometry>
+
+      <material name="purple">
+        <color rgba="0.6 0.2 0.8 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="3.0 3.0 1.0"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level_2_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level_2"/>
+    <origin xyz="0 0 1.5"/>
+  </joint>
+
+
+  <!-- ================================================= -->
+  <!-- LEVEL 1 WALLS                                     -->
+  <!-- ================================================= -->
+
+  <!-- NORTH -->
+
+  <link name="level1_north_wall">
+
+    <visual>
+      <geometry>
+        <box size="6.0 0.15 0.50"/>
+      </geometry>
+
+      <material name="yellow">
+        <color rgba="0.9 0.8 0.1 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="6.0 0.15 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level1_north_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level1_north_wall"/>
+    <origin xyz="0 2.925 1.25"/>
+  </joint>
+
+
+  <!-- SOUTH -->
+
+  <link name="level1_south_wall">
+
+    <visual>
+      <geometry>
+        <box size="6.0 0.15 0.50"/>
+      </geometry>
+
+      <material name="yellow">
+        <color rgba="0.9 0.8 0.1 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="6.0 0.15 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level1_south_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level1_south_wall"/>
+    <origin xyz="0 -2.925 1.25"/>
+  </joint>
+
+
+  <!-- EAST -->
+
+  <link name="level1_east_wall">
+
+    <visual>
+      <geometry>
+        <box size="0.15 6.0 0.50"/>
+      </geometry>
+
+      <material name="yellow">
+        <color rgba="0.9 0.8 0.1 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.15 6.0 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level1_east_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level1_east_wall"/>
+    <origin xyz="2.925 0 1.25"/>
+  </joint>
+
+
+  <!-- WEST -->
+
+  <link name="level1_west_wall">
+
+    <visual>
+      <geometry>
+        <box size="0.15 6.0 0.50"/>
+      </geometry>
+
+      <material name="yellow">
+        <color rgba="0.9 0.8 0.1 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.15 6.0 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level1_west_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level1_west_wall"/>
+    <origin xyz="-2.925 0 1.25"/>
+  </joint>
+
+
+  <!-- ================================================= -->
+  <!-- LEVEL 2 WALLS                                     -->
+  <!-- ================================================= -->
+
+  <!-- NORTH -->
+
+  <link name="level2_north_wall">
+
+    <visual>
+      <geometry>
+        <box size="3.0 0.15 0.50"/>
+      </geometry>
+
+      <material name="cyan">
+        <color rgba="0.1 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="3.0 0.15 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level2_north_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level2_north_wall"/>
+    <origin xyz="0 1.425 2.25"/>
+  </joint>
+
+
+  <!-- SOUTH -->
+
+  <link name="level2_south_wall">
+
+    <visual>
+      <geometry>
+        <box size="3.0 0.15 0.50"/>
+      </geometry>
+
+      <material name="cyan">
+        <color rgba="0.1 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="3.0 0.15 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level2_south_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level2_south_wall"/>
+    <origin xyz="0 -1.425 2.25"/>
+  </joint>
+
+
+  <!-- EAST -->
+
+  <link name="level2_east_wall">
+
+    <visual>
+      <geometry>
+        <box size="0.15 3.0 0.50"/>
+      </geometry>
+
+      <material name="cyan">
+        <color rgba="0.1 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.15 3.0 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level2_east_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level2_east_wall"/>
+    <origin xyz="1.425 0 2.25"/>
+  </joint>
+
+
+  <!-- WEST -->
+
+  <link name="level2_west_wall">
+
+    <visual>
+      <geometry>
+        <box size="0.15 3.0 0.50"/>
+      </geometry>
+
+      <material name="cyan">
+        <color rgba="0.1 0.8 0.8 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.15 3.0 0.50"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="level2_west_joint" type="fixed">
+    <parent link="ground"/>
+    <child link="level2_west_wall"/>
+    <origin xyz="-1.425 0 2.25"/>
+  </joint>
+
+</robot>

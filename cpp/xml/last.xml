@@ -1,0 +1,8 @@
+<root BTCPP_format="4">
+    <BehaviorTree ID="Tree">
+        <Sequence>
+            <Enter count="{count}"/>
+            <Exit counter="{counter}"/>
+        </Sequence>
+    </BehaviorTree>
+</root>

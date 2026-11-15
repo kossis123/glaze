@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+<world name="hero_world">
+
+  <!-- Core plugins (each only once) -->
+  <plugin filename="libignition-gazebo-physics-system.so"
+          name="ignition::gazebo::systems::Physics"/>
+
+  <plugin filename="libignition-gazebo-user-commands-system.so"
+          name="ignition::gazebo::systems::UserCommands"/>
+
+  <plugin filename="libignition-gazebo-scene-broadcaster-system.so"
+          name="ignition::gazebo::systems::SceneBroadcaster"/>
+
+  <!-- Use ogre (NOT ogre2) — ogre2 crashes on your GPU -->
+  <plugin filename="libignition-gazebo-sensors-system.so"
+          name="ignition::gazebo::systems::Sensors">
+    <render_engine>ogre</render_engine>
+  </plugin>
+
+  <include>
+    <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+  </include>
+
+  <include>
+    <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane</uri>
+  </include>
+
+</world>
+</sdf>

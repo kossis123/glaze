@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+
+<robot name="lidar_bot">
+
+  <!-- ========================= -->
+  <!-- BASE FOOTPRINT             -->
+  <!-- ========================= -->
+
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- MAIN BODY                  -->
+  <!-- ========================= -->
+
+  <link name="base_link">
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5.0"/>
+
+      <inertia
+        ixx="0.10"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.10"
+        iyz="0.0"
+        izz="0.15"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+
+      <geometry>
+        <box size="0.40 0.30 0.15"/>
+      </geometry>
+
+      <material name="blue">
+        <color rgba="0.1 0.3 0.8 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+
+      <geometry>
+        <box size="0.40 0.30 0.15"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+
+  <!-- ========================= -->
+  <!-- LEFT WHEEL                 -->
+  <!-- ========================= -->
+
+  <link name="left_wheel_link">
+
+    <inertial>
+      <mass value="0.5"/>
+
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.08" length="0.04"/>
+      </geometry>
+
+      <material name="black">
+        <color rgba="0.05 0.05 0.05 1"/>
+      </material>
+
+      <origin rpy="1.5708 0 0"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <cylinder radius="0.08" length="0.04"/>
+      </geometry>
+
+      <origin rpy="1.5708 0 0"/>
+    </collision>
+
+  </link>
+
+
+  <joint name="left_wheel_joint" type="continuous">
+
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+
+    <origin xyz="0 0.18 -0.03" rpy="0 0 0"/>
+
+    <axis xyz="0 1 0"/>
+
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- RIGHT WHEEL                -->
+  <!-- ========================= -->
+
+  <link name="right_wheel_link">
+
+    <inertial>
+      <mass value="0.5"/>
+
+      <inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.08" length="0.04"/>
+      </geometry>
+
+      <material name="black"/>
+
+      <origin rpy="1.5708 0 0"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <cylinder radius="0.08" length="0.04"/>
+      </geometry>
+
+      <origin rpy="1.5708 0 0"/>
+    </collision>
+
+  </link>
+
+
+  <joint name="right_wheel_joint" type="continuous">
+
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+
+    <origin xyz="0 -0.18 -0.03" rpy="0 0 0"/>
+
+    <axis xyz="0 1 0"/>
+
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- FRONT CASTER               -->
+  <!-- ========================= -->
+
+  <link name="caster_link">
+
+    <inertial>
+      <mass value="0.2"/>
+
+      <inertia
+        ixx="0.0005"
+        ixy="0"
+        ixz="0"
+        iyy="0.0005"
+        iyz="0"
+        izz="0.0005"/>
+    </inertial>
+
+    <visual>
+
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+
+      <material name="black"/>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+
+    </collision>
+
+  </link>
+
+
+  <joint name="caster_joint" type="fixed">
+
+    <parent link="base_link"/>
+    <child link="caster_link"/>
+
+    <origin xyz="0.16 0 -0.09" rpy="0 0 0"/>
+
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- LIDAR                      -->
+  <!-- ========================= -->
+
+  <link name="lidar_link">
+
+    <visual>
+
+      <geometry>
+        <cylinder radius="0.045" length="0.04"/>
+      </geometry>
+
+      <material name="black"/>
+
+    </visual>
+
+    <collision>
+
+      <geometry>
+        <cylinder radius="0.045" length="0.04"/>
+      </geometry>
+
+    </collision>
+
+  </link>
+
+
+  <joint name="lidar_joint" type="fixed">
+
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+
+    <!-- LiDAR is 20 cm above the ground -->
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- IMU                        -->
+  <!-- ========================= -->
+
+  <link name="imu_link">
+
+    <visual>
+
+      <geometry>
+        <box size="0.04 0.04 0.02"/>
+      </geometry>
+
+      <material name="red">
+        <color rgba="0.8 0.1 0.1 1"/>
+      </material>
+
+    </visual>
+
+  </link>
+
+
+  <joint name="imu_joint" type="fixed">
+
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+
+  </joint>
+
+
+  <!-- ========================= -->
+  <!-- GAZEBO SIM LIDAR           -->
+  <!-- ========================= -->
+
+  <gazebo reference="lidar_link">
+
+    <sensor name="lidar" type="gpu_lidar">
+
+    <frame_id>lidar_link</frame_id>
+    <gz_frame_id>lidar_link</gz_frame_id>
+
+      <pose>0 0 0 0 0 0</pose>
+
+      <update_rate>10</update_rate>
+
+      <topic>/scan</topic>
+
+      <ray>
+
+        <scan>
+
+          <horizontal>
+
+            <samples>720</samples>
+
+            <resolution>1</resolution>
+
+            <min_angle>-3.14159</min_angle>
+
+            <max_angle>3.14159</max_angle>
+
+          </horizontal>
+
+        </scan>
+
+        <range>
+
+          <min>0.12</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+
+        </range>
+
+      </ray>
+
+    </sensor>
+
+  </gazebo>
+
+
+  <!-- ========================= -->
+  <!-- GAZEBO SIM IMU             -->
+  <!-- ========================= -->
+
+  <gazebo reference="imu_link">
+
+    <sensor name="imu_sensor" type="imu">
+
+      <always_on>true</always_on>
+
+      <update_rate>100</update_rate>
+
+      <topic>/imu</topic>
+
+    </sensor>
+
+  </gazebo>
+
+<!-- ===================================================== -->
+<!-- ROS 2 CONTROL                                         -->
+<!-- ===================================================== -->
+
+<ros2_control name="GazeboSystem" type="system">
+
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  </hardware>
+
+  <!-- LEFT WHEEL -->
+  <joint name="left_wheel_joint">
+
+    <command_interface name="velocity">
+      <param name="min">-20</param>
+      <param name="max">20</param>
+    </command_interface>
+
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+
+  </joint>
+
+
+  <!-- RIGHT WHEEL -->
+  <joint name="right_wheel_joint">
+
+    <command_interface name="velocity">
+      <param name="min">-20</param>
+      <param name="max">20</param>
+    </command_interface>
+
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+
+  </joint>
+
+</ros2_control>
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>/home/iamironman/ros2/src/robo/config/config.yaml</parameters>
+    </plugin>
+  </gazebo>
+  <gazebo reference="caster_link">
+  <mu1 value="0.001"/>
+  <mu2 value="0.001"/>
+</gazebo>
+</robot>

@@ -1,0 +1,9 @@
+<root BTCPP_format="4">
+    <BehaviorTree ID="Tree">
+        <Sequence>
+            <StartingNode target_x="0.0" target_y="12.0" />
+
+        </Sequence>
+    
+    </BehaviorTree>
+</root>

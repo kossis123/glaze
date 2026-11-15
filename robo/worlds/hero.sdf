@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+
+  <world name="my_world">
+
+    <!-- Physics -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Physics system -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+
+    <!-- Scene broadcaster -->
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+
+
+    <!-- ========================= -->
+    <!--        GROUND PLANE       -->
+    <!-- ========================= -->
+
+    <model name="ground">
+      <static>true</static>
+
+      <link name="ground_link">
+
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+            </plane>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+            </plane>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ========================= -->
+    <!--          OBJ FIELD        -->
+    <!-- ========================= -->
+
+    <model name="environment">
+
+      <!-- x y z roll pitch yaw -->
+      <!-- yaw = 1.57 rad = approximately 90 degrees -->
+      <pose>0 0 0 1.57 0 0</pose>
+
+      <static>true</static>
+
+      <link name="environment_link">
+
+        <!-- OBJ COLLISION -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>/home/iamironman/ros2/src/robo/urdf/Untitled.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+
+
+        <!-- OBJ VISUAL -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>/home/iamironman/ros2/src/robo/urdf/Untitled.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+
+      </link>
+
+    </model>
+
+  </world>
+
+</sdf>

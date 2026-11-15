@@ -1,0 +1,8 @@
+<root BTCPP_format="4">
+    <BehaviorTree id="main">
+        <Sequence name="Init">
+            <Init_down value1="0.3" />
+            <Init_up value2="-0.3"/>
+        </Sequence>
+    </BehaviorTree>
+</root>
